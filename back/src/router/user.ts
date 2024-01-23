@@ -2,13 +2,13 @@ import express from 'express';
 import {
   createUser,
   getAllUsers,
-  getUserById,
+  login,
 } from '../controller/user';
 
 const user = express.Router();
 
 user.post('/users', createUser);
 user.get('/users', getAllUsers);
-user.get('/users/:id', getUserById);
+user.post('/auth', login);
 
 export { user };
