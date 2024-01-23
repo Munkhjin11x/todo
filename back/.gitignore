@@ -1,0 +1,18 @@
+# Node.js
+node_modules/
+dist/
+# TypeScript
+*.js
+*.js.map
+
+# Visual Studio Code
+.vscode/
+
+# JetBrains IDEs
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
