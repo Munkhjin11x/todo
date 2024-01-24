@@ -27,17 +27,16 @@ const getAllUsers = async (req: Request, res: Response) => {
 };
 const login = async (req: Request, res: Response) => {
   try {
-    const { email, password } = req.body;
-    const user = await userModel.findOne({ email });
-
+    const { username, password } = req.body;
+    const user:any = await userModel.findOne({ username });
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
-    
-    if (user.password !== password) {
+    const hashedPassword = await bcrypt.compare(password, user.password);
+    if (!hashedPassword) {
       return res.status(401).send("Username or password incorrect");
     }
-    res.status(200).json({...user});
+    res.status(200).json({user});
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });
