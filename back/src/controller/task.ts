@@ -43,5 +43,20 @@ const createTask = async (req:Request, res:Response) => {
       res.status(500).json({ message: error.message });
     }
   };
-export {createTask , getAllTasks, updateTaskStatus}
+  const deleteTask = async (req: Request, res: Response) => {
+    const { taskId } = req.params;
+  
+    try {
+      const deletedTask = await taskModel.findByIdAndDelete(taskId);
+  
+      if (!deletedTask) {
+        return res.status(404).json({ message: 'Task not found' });
+      }
+  
+      res.json({ message: 'Task deleted successfully' });
+    } catch (error: any) {
+      res.status(500).json({ message: error.message });
+    }
+  };
+export {createTask , getAllTasks, updateTaskStatus, deleteTask}
 
