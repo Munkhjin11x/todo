@@ -95,7 +95,7 @@ const AddCard: React.FC = () => {
                  <p>Name:</p>
                  <div className="flex gap-5  items-center">
                   <p> {e.name} </p>
-                  <Button
+                  <Button variant="del" 
                  onClick={() => handleDeleteTask(e._id)}
                 >
                   Del
@@ -103,12 +103,12 @@ const AddCard: React.FC = () => {
                   </div>
                   <p>Desc:</p>
                   <p> {e.description}</p>
-                  <Button onClick={() => handleMoveToNextState(e._id, "inProgress")}>
+                  <Button variant="ghost"  onClick={() => handleMoveToNextState(e._id, "inProgress")}>
                   In Progress
                   </Button>
                 </div>
               ))}
-              <Button onClick={modalHandle}>Add Task</Button>
+              <Button variant="ghost"  onClick={modalHandle}>Add Task</Button>
           </div>
         </div>
         <div>
@@ -119,8 +119,7 @@ const AddCard: React.FC = () => {
                   <p>Name:</p>
                  <div className="flex gap-5  items-center">
                   <p> {e.name} </p>
-                  <Button
-                 onClick={() => handleDeleteTask(e._id)}
+                  <Button variant="del"  onClick={() => handleDeleteTask(e._id)}
                 >
                   Del
                 </Button>
@@ -128,12 +127,12 @@ const AddCard: React.FC = () => {
                   <p>Desc:</p>
                   <p> {e.description}</p>
                  
-                  <Button className="bg-gray-800 text-white rounded-md w-fit px-3 py-3" onClick={() => handleMoveToNextState(e._id, "completed")}>
+                  <Button variant="ghost"  className="bg-gray-800 text-white rounded-md w-fit px-3 py-3" onClick={() => handleMoveToNextState(e._id, "completed")}>
                     Complete
                   </Button>
                 </div>
               ))}
-               <Button onClick={modalHandle}>Add Task</Button>
+               <Button variant="ghost"  onClick={modalHandle}>Add Task</Button>
           </div>
         </div>
         <div>
@@ -144,7 +143,7 @@ const AddCard: React.FC = () => {
                   <p>Name</p>
                   <div className="flex gap-5  items-center">
                   <p> {e.name} </p>
-                  <Button onClick={() => handleDeleteTask(e._id)} >
+                  <Button variant="del" onClick={() => handleDeleteTask(e._id)} >
                   Del
                 </Button>
                   </div>
@@ -153,26 +152,30 @@ const AddCard: React.FC = () => {
               
                 </div>
               ))}
-              <Button onClick={modalHandle}>Add Task</Button>
+              <Button variant="ghost" onClick={modalHandle}>Add Task</Button>
           </div>
         </div>
       </div>
 {modal&&(
-     <div className="fixed gap-3  bg-zinc-500 rounded-lg flex flex-col border-[2px] top-[30%] left-[42%] border-solid border-gray-700 p-7">
-     <label className="flex flex-col text-white">
-       Task Name:
-       <input className=" rounded-md p-1" type="text"name="name" placeholder="name" value={newTask.name} onChange={handleInputChange}/>
-         Task Description:
-         <textarea className="rounded-md " placeholder="Description"name="description"value={newTask.description} onChange={handleInputChange}  />
+     <div className="fixed gap-3  bg-white rounded-lg flex flex-col border-[2px] top-[30%] left-[42%] border-solid border-gray-700 p-7">
+      <div className="flex justify-between items-center">
+      <p className="font-semibold">Add Card</p>
+      <p onClick={()=>setModal(false)} className="text-[20px] font-semibold cursor-pointer">x</p>
+      </div>
+     <label className="flex flex-col ">
+   <p className=" font-semibold">    Task Name:</p>
+       <input className=" rounded-md border-[2px] w-[250px] bg-gray-500 text-white p-1" type="text"name="name" placeholder="name" value={newTask.name} onChange={handleInputChange}/>
+       <p className=" font-semibold">     Task Description:</p>
+         <textarea className="rounded-md  border-[2px] h-[80px] bg-gray-500 text-white p-1 " placeholder="Description"name="description"value={newTask.description} onChange={handleInputChange}  />
        </label>
        <label>
-       <select className="rounded-md " value={newTask.status} onChange={handleSelectChange}>
+       <select className="rounded-md p-1    bg-gray-500 text-white" value={newTask.status} onChange={handleSelectChange}>
+         <option value="todo">To Do</option>
          <option value="inProgress">In Progress</option>
          <option value="completed">Completed</option>
-         <option value="todo">To Do</option>
        </select>
      </label>
-     <Button onClick={handleAddTask}>Add Task</Button>
+     <Button variant="ghost" onClick={handleAddTask}>Add Task</Button>
      </div>
 )}
    

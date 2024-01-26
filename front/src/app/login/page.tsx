@@ -2,13 +2,13 @@
 import axios from "axios";
 import { useState } from "react";
 import { Button } from "../components/Button";
-
+import { useRouter } from "next/navigation";
 const Login = () => {
   const apiUrl = "http://localhost:8000/auth";
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
-
+const router = useRouter()
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
@@ -19,7 +19,7 @@ const Login = () => {
       });
       const data = response.data.user  
       if (data && (data.id || data.username)) {
-        console.log("Login successful:", data);
+     router.push(`/todo/${data.username}`)
       } else {
         setError(data.message || "Login failed");
       }
